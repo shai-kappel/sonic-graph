@@ -1,0 +1,77 @@
+# ==============================================================================
+# 🚨 CRITICAL SECRETS & FIREBASE CONFIG 🚨
+# NEVER commit these files. They contain your database keys and project IDs.
+# ==============================================================================
+**/android/app/google-services.json
+**/ios/Runner/GoogleService-Info.plist
+**/macos/Runner/GoogleService-Info.plist
+firebase-debug.log
+firebase-debug.*.log
+*.key
+*.pem
+*.p12
+.env
+.env.*
+
+# ==============================================================================
+# Flutter/Dart
+# ==============================================================================
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.log
+*.dart_tool
+*.pb.dart
+
+# ==============================================================================
+# Android Native
+# ==============================================================================
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/build/
+**/android/local.properties
+**/android/**/*.apk
+**/android/**/*.aab
+**/android/**/*.key
+**/android/**/*.keystore
+**/android/**/*.jks
+**/android/.gradle/
+**/android/gradle-wrapper.jar
+**/android/.idea/
+**/android/captures/
+
+# ==============================================================================
+# iOS & macOS Native
+# ==============================================================================
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/**/*.modulemap
+**/ios/**/*.xcworkspace/xcuserdata/
+**/ios/**/*.xcodeproj/xcuserdata/
+**/ios/**/*.xcodeproj/project.xcworkspace/xcuserdata/
+**/ios/**/*.xcodeproj/project.xcworkspace/xcshareddata/
+
+# ==============================================================================
+# IDEs & Editor Configs
+# ==============================================================================
+.idea/
+.vscode/
+.antigravity/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
