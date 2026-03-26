@@ -20,7 +20,8 @@ abstract final class AppTheme {
       labelSmall: AppTextStyles.labelSmall,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.transparent, elevation: 0,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
     ),
   );
 }

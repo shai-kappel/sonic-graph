@@ -1,0 +1,41 @@
+#!/bin/bash
+# SonicGraph pre-commit hook
+# Install: git config core.hooksPath .githooks
+
+set -e
+
+echo "🔍 Running pre-commit checks..."
+
+# 1. Format check
+echo "  Checking formatting..."
+dart format --set-exit-if-changed . > /dev/null 2>&1 || {
+  echo "❌ Formatting issues found. Run: dart format ."
+  exit 1
+}
+
+# 2. Static analysis
+echo "  Running analysis..."
+flutter analyze --no-fatal-infos > /dev/null 2>&1 || {
+  echo "❌ Analysis errors found. Run: flutter analyze"
+  exit 1
+}
+
+# 3. Architecture check
+echo "  Checking architecture boundaries..."
+bash scripts/check-architecture.sh > /dev/null 2>&1 || {
+  echo "❌ Architecture violations found. Run: bash scripts/check-architecture.sh"
+  exit 1
+}
+
+# 4. Gitleaks (if installed)
+if command -v gitleaks &> /dev/null; then
+  echo "  Scanning for secrets..."
+  gitleaks protect --staged --no-banner > /dev/null 2>&1 || {
+    echo "❌ Potential secrets detected. Run: gitleaks protect --staged"
+    exit 1
+  }
+else
+  echo "  ⚠ Gitleaks not installed locally — skipping (CI will catch leaks)"
+fi
+
+echo "✅ All pre-commit checks passed"

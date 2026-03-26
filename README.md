@@ -33,6 +33,10 @@ SonicGraph is a mobile-first, open-source application that visually maps the mac
 ```bash
 git clone https://github.com/shai-kappel/sonic-graph.git
 cd sonic-graph
+
+# Install pre-commit hooks (optional but recommended)
+git config core.hooksPath .githooks
+
 flutter pub get
 flutter run --flavor dev
 ```

@@ -4,10 +4,19 @@
 **Goal:** Establish the interactive infinite canvas and basic node rendering.
 
 ### Phase 1: Project Scaffolding
-- [ ] Initialize Flutter project (iOS/Android).
-- [ ] Set up theme with Glassmorphic Deep Blue aesthetic.
-- [ ] Integrate BLoC for state management.
-- [ ] Configure `InteractiveViewer` for pan/zoom.
+- [x] Initialize Flutter project (iOS/Android).
+- [x] Set up theme with Glassmorphic Deep Blue aesthetic.
+- [x] Integrate BLoC for state management.
+- [x] Configure `InteractiveViewer` for pan/zoom.
+
+### Phase 01.1: CI/CD Pipeline & Security Scanning (INSERTED)
+**Goal:** Establish GitHub Actions CI pipeline with static analysis, security scanning (Gitleaks, Trivy), Dependabot, architecture linting, dotenv secrets consolidation, and public repo readiness (OpenSSF Scorecard, SECURITY.md).
+**Requirements**: Complete
+**Depends on:** Phase 1
+**Plans:** 3/3 plans executed
+- [x] Plan A: GitHub Actions CI Pipeline (Wave 1)
+- [x] Plan B: Security Scanning & Dependency Management (Wave 1)
+- [x] Plan C: Secrets Consolidation, Architecture Check & Public Repo Readiness (Wave 2)
 
 ### Phase 2: Static Canvas & Node Rendering
 - [ ] Implement custom painter for bezier curves.
@@ -49,4 +58,4 @@
 - [ ] Prepare deployment metadata.
 
 ---
-*Last updated: 2026-03-25*
+*Last updated: 2026-03-26*

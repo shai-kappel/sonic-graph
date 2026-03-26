@@ -1,0 +1,24 @@
+# Gitleaks configuration for SonicGraph
+# https://github.com/gitleaks/gitleaks
+
+title = "SonicGraph Gitleaks Config"
+
+[allowlist]
+  description = "Global allowlist"
+
+  # Paths to ignore
+  paths = [
+    '''node_modules''',
+    '''.dart_tool''',
+    '''build''',
+    '''\.planning''',
+    '''pubspec\.lock''',
+    '''\.env\.example''',
+  ]
+
+  # Known false positives
+  regexTarget = "line"
+  regexes = [
+    # Flutter/Dart generated hashes
+    '''sha256:[a-f0-9]{64}''',
+  ]

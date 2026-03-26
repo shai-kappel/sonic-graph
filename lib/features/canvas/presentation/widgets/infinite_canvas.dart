@@ -13,7 +13,8 @@ class InfiniteCanvas extends StatefulWidget {
 }
 
 class _InfiniteCanvasState extends State<InfiniteCanvas> {
-  final TransformationController _transformController = TransformationController();
+  final TransformationController _transformController =
+      TransformationController();
 
   @override
   void dispose() {

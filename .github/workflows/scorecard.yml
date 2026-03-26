@@ -1,0 +1,41 @@
+name: OpenSSF Scorecard
+
+on:
+  # Run weekly on Sunday
+  schedule:
+    - cron: '0 6 * * 0'
+  # Allow manual trigger
+  workflow_dispatch:
+  # Run on changes to this workflow
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/scorecard.yml'
+
+permissions: read-all
+
+jobs:
+  analysis:
+    name: Scorecard Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Run Scorecard
+        uses: ossf/scorecard-action@62b2cac7ed8198b15735ed49ab1e5cf35480ba46 # v2.4.0
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif

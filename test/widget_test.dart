@@ -4,7 +4,9 @@ import 'package:sonic_graph/features/canvas/presentation/pages/canvas_page.dart'
 import 'package:sonic_graph/core/config/app_config.dart';
 
 void main() {
-  testWidgets('Smoke test: app launches and shows CanvasPage', (WidgetTester tester) async {
+  testWidgets('Smoke test: app launches and shows CanvasPage', (
+    WidgetTester tester,
+  ) async {
     // Initialize AppConfig for testing
     AppConfig.environment = Environment.dev;
 
@@ -14,7 +16,7 @@ void main() {
 
     // Verify that the CanvasPage is present
     expect(find.byType(CanvasPage), findsOneWidget);
-    
+
     // Verify initial zoom level is 100%
     expect(find.text('100%'), findsOneWidget);
   });

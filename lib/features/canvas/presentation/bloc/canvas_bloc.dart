@@ -17,12 +17,17 @@ class CanvasBloc extends Bloc<CanvasEvent, CanvasState> {
   void _onTransformed(CanvasTransformed event, Emitter<CanvasState> emit) {
     final matrix = event.matrix;
     final zoom = matrix.getMaxScaleOnAxis();
-    final translation = Offset(matrix.getTranslation().x, matrix.getTranslation().y);
-    emit(state.copyWith(
-      transformMatrix: matrix,
-      zoomLevel: zoom,
-      panOffset: translation,
-    ));
+    final translation = Offset(
+      matrix.getTranslation().x,
+      matrix.getTranslation().y,
+    );
+    emit(
+      state.copyWith(
+        transformMatrix: matrix,
+        zoomLevel: zoom,
+        panOffset: translation,
+      ),
+    );
   }
 
   void _onZoomChanged(CanvasZoomChanged event, Emitter<CanvasState> emit) {

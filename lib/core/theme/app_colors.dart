@@ -6,10 +6,10 @@ abstract final class AppColors {
   static const canvasBackgroundLight = Color(0xFF111638);
 
   // Glassmorphic surfaces
-  static const surfaceGlass = Color(0x14FFFFFF);       // white 8%
-  static const surfaceGlassHover = Color(0x1FFFFFFF);  // white 12%
-  static const borderGlass = Color(0x26FFFFFF);         // white 15%
-  static const borderGlassSubtle = Color(0x0DFFFFFF);  // white 5%
+  static const surfaceGlass = Color(0x14FFFFFF); // white 8%
+  static const surfaceGlassHover = Color(0x1FFFFFFF); // white 12%
+  static const borderGlass = Color(0x26FFFFFF); // white 15%
+  static const borderGlassSubtle = Color(0x0DFFFFFF); // white 5%
 
   // Accents
   static const accentPrimary = Color(0xFF6C63FF);

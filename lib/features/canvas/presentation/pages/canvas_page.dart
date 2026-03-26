@@ -26,7 +26,10 @@ class CanvasPage extends StatelessWidget {
                 buildWhen: (prev, curr) => prev.zoomLevel != curr.zoomLevel,
                 builder: (context, state) {
                   return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.surfaceGlass,
                       borderRadius: BorderRadius.circular(20),
