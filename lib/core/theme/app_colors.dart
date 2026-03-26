@@ -15,6 +15,9 @@ abstract final class AppColors {
   static const accentPrimary = Color(0xFF6C63FF);
   static const accentGlow = Color(0xFF00D4FF);
   static const accentWarm = Color(0xFFFF6B6B);
+  static const primaryGlow = Color(
+    0x666C63FF,
+  ); // Primary with 40% opacity for glow
 
   // Text
   static const textPrimary = Color(0xFFE8EAED);
