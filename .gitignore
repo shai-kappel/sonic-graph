@@ -29,9 +29,13 @@ coverage/
 # ==============================================================================
 # GSD Planning & State Files
 # ==============================================================================
-# Allow tracking of the planning directory but ignore internal noise
-.planning/config.json
-.planning/state.json
+# 1. Ignore everything inside the planning directory by default
+.planning/*
+
+# 2. UN-IGNORE the specific, high-value files you want the community to see
+!.planning/project.md
+!.planning/roadmap.md
+!.planning/state.md
 
 # ==============================================================================
 # Android Native
