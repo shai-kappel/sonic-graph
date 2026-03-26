@@ -33,9 +33,9 @@ coverage/
 .planning/*
 
 # 2. UN-IGNORE the specific, high-value files you want the community to see
-!.planning/project.md
-!.planning/roadmap.md
-!.planning/state.md
+!.planning/PROJECT.md
+!.planning/ROADMAP.md
+!.planning/STATE.md
 
 # ==============================================================================
 # Android Native
