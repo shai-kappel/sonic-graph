@@ -6,6 +6,8 @@ class GlassmorphicContainer extends StatelessWidget {
   const GlassmorphicContainer({
     super.key,
     required this.child,
+    this.width,
+    this.height,
     this.borderRadius = 16.0,
     this.blurSigma = 10.0,
     this.padding = const EdgeInsets.all(16),
@@ -13,6 +15,8 @@ class GlassmorphicContainer extends StatelessWidget {
     this.borderColor,
   });
 
+  final double? width;
+  final double? height;
   final Widget child;
   final double borderRadius;
   final double blurSigma;
@@ -27,6 +31,8 @@ class GlassmorphicContainer extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
         child: Container(
+          width: width,
+          height: height,
           padding: padding,
           decoration: BoxDecoration(
             color: backgroundColor ?? AppColors.surfaceGlass,

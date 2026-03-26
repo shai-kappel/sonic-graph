@@ -10,11 +10,23 @@ void main() {
       expect(CanvasBloc().state, const CanvasState());
     });
 
-    test('emits isInitialized: true when CanvasInitialized added', () {
-      final bloc = CanvasBloc();
-      bloc.add(const CanvasInitialized());
-      expectLater(bloc.stream, emits(const CanvasState(isInitialized: true)));
-    });
+    test(
+      'emits isInitialized: true with nodes and edges when CanvasInitialized added',
+      () {
+        final bloc = CanvasBloc();
+        bloc.add(const CanvasInitialized());
+        expectLater(
+          bloc.stream,
+          emits(
+            predicate<CanvasState>((state) {
+              return state.isInitialized &&
+                  state.nodes.length == 60 &&
+                  state.edges.length == 59;
+            }),
+          ),
+        );
+      },
+    );
 
     test('emits new matrix, zoom, and pan when CanvasTransformed added', () {
       final bloc = CanvasBloc();
