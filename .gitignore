@@ -27,6 +27,13 @@ coverage/
 *.pb.dart
 
 # ==============================================================================
+# GSD Planning & State Files
+# ==============================================================================
+# Allow tracking of the planning directory but ignore internal noise
+.planning/config.json
+.planning/state.json
+
+# ==============================================================================
 # Android Native
 # ==============================================================================
 **/android/app/debug/
@@ -75,3 +82,4 @@ coverage/
 *~
 .DS_Store
 Thumbs.db
+node_modules/
