@@ -19,9 +19,9 @@
 - [x] Plan C: Secrets Consolidation, Architecture Check & Public Repo Readiness (Wave 2)
 
 ### Phase 2: Static Canvas & Node Rendering
-- [ ] Implement custom painter for bezier curves.
-- [ ] Create basic node widget (glassmorphic cards).
-- [ ] Mock graph data to test rendering performance (50+ nodes).
+- [x] Implement custom painter for bezier curves.
+- [x] Create basic node widget (glassmorphic cards).
+- [x] Mock graph data to test rendering performance (50+ nodes).
 
 ## Milestone 2: Data Exploration (Phase 3-4)
 **Goal:** Connect to live music metadata and implement dynamic discovery.
