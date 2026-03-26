@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0  # Full history for scanning all commits
 
       - name: Gitleaks
-        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196e88e9c30 # v2.3.8
+        uses: gitleaks/gitleaks-action@6688938034993c9fa2468f33fa92175da48f98a3 # v2.3.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
