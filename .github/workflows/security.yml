@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0  # Full history for scanning all commits
 
       - name: Gitleaks
-        uses: gitleaks/gitleaks-action@66889603348e39a025977f25d45912cc9a38d0c4 # v2.3.8
+        uses: gitleaks/gitleaks-action@f586c14365d4643c6aa59d472ae6e984bf47bb34 # v2.3.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Trivy FS Scan
-        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # v0.29.0
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # v0.35.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -44,8 +44,8 @@ jobs:
           severity: 'HIGH,CRITICAL'
           exit-code: '1'
 
-#      - name: Upload Trivy SARIF
-#        uses: github/codeql-action/upload-sarif@662472033e021d50ed2df46a567204497a1d1d3f # v3.28.5
-#        if: always()
-#        with:
-#          sarif_file: 'trivy-results.sarif'
+      - name: Upload Trivy SARIF
+        uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
