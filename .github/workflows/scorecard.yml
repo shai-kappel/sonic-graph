@@ -12,13 +12,14 @@ on:
     paths:
       - '.github/workflows/scorecard.yml'
 
-permissions: read-all
+permissions: {}
 
 jobs:
   analysis:
     name: Scorecard Analysis
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       security-events: write
       id-token: write
 

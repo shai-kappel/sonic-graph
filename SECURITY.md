@@ -13,7 +13,7 @@ If you discover a security vulnerability in SonicNomad, please report it respons
 ### How to Report
 
 1. **Do NOT open a public issue** for security vulnerabilities.
-2. Email: [security contact — update before going public]
+2. Email: security@indiedesert.com
 3. Include:
    - Description of the vulnerability
    - Steps to reproduce
