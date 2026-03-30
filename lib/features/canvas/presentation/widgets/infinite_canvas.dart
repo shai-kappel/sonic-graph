@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sonic_nomad/core/theme/app_colors.dart';
 import 'package:sonic_nomad/features/canvas/domain/models/graph_edge.dart';
-import 'package:sonic_nomad/features/canvas/domain/models/graph_node.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_bloc.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_event.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_state.dart';
@@ -57,7 +56,9 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
                 // 2. Edges (Bezier Curves)
                 CustomPaint(
                   painter: _GraphEdgePainter(
-                    nodes: state.nodes,
+                    nodePositions: {
+                      for (final node in state.nodes) node.id: node.position,
+                    },
                     edges: state.edges,
                   ),
                   size: const Size(4000, 4000),
@@ -103,9 +104,9 @@ class _NebulaBackgroundPainter extends CustomPainter {
 }
 
 class _GraphEdgePainter extends CustomPainter {
-  _GraphEdgePainter({required this.nodes, required this.edges});
+  _GraphEdgePainter({required this.nodePositions, required this.edges});
 
-  final List<GraphNode> nodes;
+  final Map<String, Offset> nodePositions;
   final List<GraphEdge> edges;
 
   @override
@@ -122,11 +123,30 @@ class _GraphEdgePainter extends CustomPainter {
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.0);
 
     for (final edge in edges) {
-      final fromNode = nodes.firstWhere((n) => n.id == edge.fromId);
-      final toNode = nodes.firstWhere((n) => n.id == edge.toId);
+      final rawStart = nodePositions[edge.fromId];
+      final rawEnd = nodePositions[edge.toId];
 
-      final start = fromNode.position;
-      final end = toNode.position;
+      if (rawStart == null || rawEnd == null) continue;
+
+      // Calculate intersection with 160x80 Discovery Tile boundaries
+      // Tiles are centered on the node position.
+      final dx = rawEnd.dx - rawStart.dx;
+      final dy = rawEnd.dy - rawStart.dy;
+
+      // Offset by half-width (80) or half-height (40) depending on dominant direction
+      final double offsetX;
+      final double offsetY;
+
+      if (dx.abs() > dy.abs()) {
+        offsetX = 80.0 * (dx > 0 ? 1 : -1);
+        offsetY = 0.0;
+      } else {
+        offsetX = 0.0;
+        offsetY = 40.0 * (dy > 0 ? 1 : -1);
+      }
+
+      final start = Offset(rawStart.dx + offsetX, rawStart.dy + offsetY);
+      final end = Offset(rawEnd.dx - offsetX, rawEnd.dy - offsetY);
 
       final path = Path();
       path.moveTo(start.dx, start.dy);
@@ -153,6 +173,7 @@ class _GraphEdgePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _GraphEdgePainter oldDelegate) {
-    return oldDelegate.nodes != nodes || oldDelegate.edges != edges;
+    return oldDelegate.nodePositions != nodePositions ||
+        oldDelegate.edges != edges;
   }
 }
