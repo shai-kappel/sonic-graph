@@ -1,28 +1,6 @@
 # Roadmap: SonicNomad
 
-## Milestone 1: Foundation & Canvas (Phase 1-2)
-**Goal:** Establish the interactive infinite canvas and basic node rendering.
-
-### Phase 1: Project Scaffolding
-- [x] Initialize Flutter project (iOS/Android).
-- [x] Set up theme with Glassmorphic Deep Blue aesthetic.
-- [x] Integrate BLoC for state management.
-- [x] Configure `InteractiveViewer` for pan/zoom.
-
-### Phase 01.1: CI/CD Pipeline & Security Scanning (INSERTED)
-**Goal:** Establish GitHub Actions CI pipeline with static analysis, security scanning (Gitleaks, Trivy), Dependabot, architecture linting, dotenv secrets consolidation, and public repo readiness (OpenSSF Scorecard, SECURITY.md).
-**Requirements**: Complete
-**Depends on:** Phase 1
-**Plans:** 3/3 plans executed
-- [x] Plan A: GitHub Actions CI Pipeline (Wave 1)
-- [x] Plan B: Security Scanning & Dependency Management (Wave 1)
-- [x] Plan C: Secrets Consolidation, Architecture Check & Public Repo Readiness (Wave 2)
-
-### Phase 2: Static Canvas & Node Rendering
-- [x] Finalize and verify the interactive infinite canvas and basic node rendering.
-- [x] 02-01-PLAN.md — Refine Core Rendering & Painter (Wave 1)
-- [x] 02-02-PLAN.md — Performance Mocking & BLoC Optimization (Wave 2)
-- [x] 02-03-PLAN.md — Stress Testing & Validation (Wave 3)
+- **[Milestone 1: Foundation & Canvas (Phase 1-2)](milestones/v1-ROADMAP.md)** - Completed 2026-03-30. 100-node 60fps canvas + CI/CD.
 
 ## Milestone 2: Data Exploration (Phase 3-4)
 **Goal:** Connect to live music metadata and implement dynamic discovery.
@@ -64,4 +42,4 @@
 - [ ] Prepare deployment metadata.
 
 ---
-*Last updated: 2026-03-31*
+*Last updated: 2026-03-30*
