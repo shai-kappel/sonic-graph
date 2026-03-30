@@ -43,25 +43,29 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
           constrained: false,
           onInteractionUpdate: (details) => _onInteractionUpdate(details),
           child: SizedBox(
-            width: 4000,
-            height: 4000,
+            width: 5000,
+            height: 5000,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                // 1. Nebula Background (Atmospheric Light)
-                CustomPaint(
-                  painter: _NebulaBackgroundPainter(),
-                  size: const Size(4000, 4000),
-                ),
-                // 2. Edges (Bezier Curves)
-                CustomPaint(
-                  painter: _GraphEdgePainter(
-                    nodePositions: {
-                      for (final node in state.nodes) node.id: node.position,
-                    },
-                    edges: state.edges,
+                // 1. Nebula Background (Atmospheric Light) - Isolated with RepaintBoundary
+                RepaintBoundary(
+                  child: CustomPaint(
+                    painter: _NebulaBackgroundPainter(),
+                    size: const Size(5000, 5000),
                   ),
-                  size: const Size(4000, 4000),
+                ),
+                // 2. Edges (Bezier Curves) - Isolated with RepaintBoundary
+                RepaintBoundary(
+                  child: CustomPaint(
+                    painter: _GraphEdgePainter(
+                      nodePositions: {
+                        for (final node in state.nodes) node.id: node.position,
+                      },
+                      edges: state.edges,
+                    ),
+                    size: const Size(5000, 5000),
+                  ),
                 ),
                 // 3. Nodes (Discovery Tiles)
                 ...state.nodes.map((node) => NodeWidget(node: node)),

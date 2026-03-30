@@ -20,8 +20,8 @@ void main() {
           emits(
             predicate<CanvasState>((state) {
               return state.isInitialized &&
-                  state.nodes.length == 60 &&
-                  state.edges.length == 59;
+                  state.nodes.length == 100 &&
+                  state.edges.length == 150;
             }),
           ),
         );

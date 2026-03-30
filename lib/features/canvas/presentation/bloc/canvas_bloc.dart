@@ -14,29 +14,33 @@ class CanvasBloc extends Bloc<CanvasEvent, CanvasState> {
   }
 
   void _onInitialized(CanvasInitialized event, Emitter<CanvasState> emit) {
-    // Generate 50+ mock nodes for Phase 2 stress testing
+    // Generate 100+ mock nodes for Phase 2 stress testing
     final List<GraphNode> mockNodes = [];
     final List<GraphEdge> mockEdges = [];
     final random = Random(42);
 
-    for (int i = 0; i < 60; i++) {
+    for (int i = 0; i < 100; i++) {
       final node = GraphNode(
         id: '$i',
         label: 'Artist $i',
         position: Offset(
-          1000 + random.nextDouble() * 2000,
-          1000 + random.nextDouble() * 2000,
+          random.nextDouble() * 5000,
+          random.nextDouble() * 5000,
         ),
       );
       mockNodes.add(node);
+    }
 
-      // Connect to a random previous node to create a tree-like structure
-      if (i > 0) {
-        final fromIndex = random.nextInt(i);
-        mockEdges.add(
-          GraphEdge(id: 'e-$fromIndex-$i', fromId: '$fromIndex', toId: '$i'),
-        );
+    // Create a interconnected graph with 150 edges
+    for (int i = 0; i < 150; i++) {
+      final fromIndex = random.nextInt(100);
+      int toIndex = random.nextInt(100);
+      while (fromIndex == toIndex) {
+        toIndex = random.nextInt(100);
       }
+      mockEdges.add(
+        GraphEdge(id: 'e-$i', fromId: '$fromIndex', toId: '$toIndex'),
+      );
     }
 
     emit(
