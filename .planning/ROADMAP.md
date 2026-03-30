@@ -19,12 +19,10 @@
 - [x] Plan C: Secrets Consolidation, Architecture Check & Public Repo Readiness (Wave 2)
 
 ### Phase 2: Static Canvas & Node Rendering
-**Goal:** Finalize and verify the interactive infinite canvas and basic node rendering.
-**Requirements:** [CNR-01, CNR-02, CNR-03]
-**Plans:** 3 plans
+- [x] Finalize and verify the interactive infinite canvas and basic node rendering.
 - [x] 02-01-PLAN.md — Refine Core Rendering & Painter (Wave 1)
 - [x] 02-02-PLAN.md — Performance Mocking & BLoC Optimization (Wave 2)
-- [ ] 02-03-PLAN.md — Stress Testing & Validation (Wave 3)
+- [x] 02-03-PLAN.md — Stress Testing & Validation (Wave 3)
 
 ## Milestone 2: Data Exploration (Phase 3-4)
 **Goal:** Connect to live music metadata and implement dynamic discovery.
