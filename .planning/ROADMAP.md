@@ -23,7 +23,7 @@
 **Requirements:** [CNR-01, CNR-02, CNR-03]
 **Plans:** 3 plans
 - [x] 02-01-PLAN.md — Refine Core Rendering & Painter (Wave 1)
-- [ ] 02-02-PLAN.md — Performance Mocking & BLoC Optimization (Wave 2)
+- [x] 02-02-PLAN.md — Performance Mocking & BLoC Optimization (Wave 2)
 - [ ] 02-03-PLAN.md — Stress Testing & Validation (Wave 3)
 
 ## Milestone 2: Data Exploration (Phase 3-4)
