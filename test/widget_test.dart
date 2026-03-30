@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sonic_graph/main.dart';
-import 'package:sonic_graph/features/canvas/presentation/pages/canvas_page.dart';
-import 'package:sonic_graph/core/config/app_config.dart';
+import 'package:sonic_nomad/main.dart';
+import 'package:sonic_nomad/features/canvas/presentation/pages/canvas_page.dart';
+import 'package:sonic_nomad/core/config/app_config.dart';
 
 void main() {
   testWidgets('Smoke test: app launches and shows CanvasPage', (
@@ -11,7 +11,7 @@ void main() {
     AppConfig.environment = Environment.dev;
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const SonicGraphApp());
+    await tester.pumpWidget(const SonicNomadApp());
     await tester.pump(); // Allow BLoC initialization
 
     // Verify that the CanvasPage is present

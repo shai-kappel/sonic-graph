@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in SonicGraph, please report it responsibly.
+If you discover a security vulnerability in SonicNomad, please report it responsibly.
 
 ### How to Report
 
@@ -28,7 +28,7 @@ If you discover a security vulnerability in SonicGraph, please report it respons
 
 ### Scope
 
-This policy applies to the SonicGraph application and its direct dependencies.
+This policy applies to the SonicNomad application and its direct dependencies.
 
 ## Security Measures
 

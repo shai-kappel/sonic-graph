@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_bloc.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_event.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_state.dart';
-import 'package:sonic_graph/features/canvas/presentation/widgets/infinite_canvas.dart';
-import 'package:sonic_graph/core/theme/app_colors.dart';
-import 'package:sonic_graph/core/theme/app_text_styles.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_bloc.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_event.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_state.dart';
+import 'package:sonic_nomad/features/canvas/presentation/widgets/infinite_canvas.dart';
+import 'package:sonic_nomad/core/theme/app_colors.dart';
+import 'package:sonic_nomad/core/theme/app_text_styles.dart';
+import 'package:sonic_nomad/core/widgets/glassmorphic_container.dart';
 
 class CanvasPage extends StatelessWidget {
   const CanvasPage({super.key});
@@ -15,7 +16,7 @@ class CanvasPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => CanvasBloc()..add(const CanvasInitialized()),
       child: Scaffold(
-        backgroundColor: AppColors.canvasBackground,
+        backgroundColor: AppColors.background,
         body: Stack(
           children: [
             const InfiniteCanvas(),
@@ -25,19 +26,17 @@ class CanvasPage extends StatelessWidget {
               child: BlocBuilder<CanvasBloc, CanvasState>(
                 buildWhen: (prev, curr) => prev.zoomLevel != curr.zoomLevel,
                 builder: (context, state) {
-                  return Container(
+                  return GlassmorphicContainer(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 6,
                     ),
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceGlass,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.borderGlass),
-                    ),
+                    borderRadius: 20,
                     child: Text(
                       '${(state.zoomLevel * 100).toInt()}%',
-                      style: AppTextStyles.labelSmall,
+                      style: AppTextStyles.labelSmall.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   );
                 },

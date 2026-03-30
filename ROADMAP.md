@@ -1,18 +1,23 @@
-# Roadmap: SonicGraph
+# Roadmap: SonicNomad
 
 ## Milestone 1: Foundation & Canvas (Phase 1-2)
 **Goal:** Establish the interactive infinite canvas and basic node rendering.
 
 ### Phase 1: Project Scaffolding
-- [ ] Initialize Flutter project (iOS/Android).
-- [ ] Set up theme with Glassmorphic Deep Blue aesthetic.
-- [ ] Integrate BLoC for state management.
-- [ ] Configure `InteractiveViewer` for pan/zoom.
+- [x] Initialize Flutter project (iOS/Android).
+- [x] Set up theme with Glassmorphic Deep Blue aesthetic.
+- [x] Integrate BLoC for state management.
+- [x] Configure `InteractiveViewer` for pan/zoom.
+
+### Phase 01.1: CI/CD Pipeline & Security Scanning (INSERTED)
+- [x] GitHub Actions CI Pipeline.
+- [x] Security Scanning & Dependency Management.
+- [x] Architecture Check & Public Repo Readiness.
 
 ### Phase 2: Static Canvas & Node Rendering
 - [ ] Implement custom painter for bezier curves.
 - [ ] Create basic node widget (glassmorphic cards).
-- [ ] Mock graph data to test rendering performance (50+ nodes).
+- [ ] Mock graph data to test rendering performance (100+ nodes).
 
 ## Milestone 2: Data Exploration (Phase 3-4)
 **Goal:** Connect to live music metadata and implement dynamic discovery.
@@ -24,7 +29,7 @@
 
 ### Phase 4: Wikidata & Macro-Evolution
 - [ ] SPARQL client for fetching genre hierarchies.
-- [ ] Map artist MBIDs to Wikidata QIDs.
+- [ ] Map artist MBIDs to Wikidata QID mapping.
 - [ ] Render genre clusters and parent/child evolution lines.
 
 ## Milestone 3: Persistence & Sharing (Phase 5-6)
@@ -47,6 +52,3 @@
 - [ ] Add subtle noise texture to background.
 - [ ] Performance audit for low-end devices.
 - [ ] Prepare deployment metadata.
-
----
-*Last updated: 2026-03-25*

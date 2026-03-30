@@ -1,4 +1,4 @@
-# Roadmap: SonicGraph
+# Roadmap: SonicNomad
 
 ## Milestone 1: Foundation & Canvas (Phase 1-2)
 **Goal:** Establish the interactive infinite canvas and basic node rendering.
@@ -19,21 +19,29 @@
 - [x] Plan C: Secrets Consolidation, Architecture Check & Public Repo Readiness (Wave 2)
 
 ### Phase 2: Static Canvas & Node Rendering
-- [x] Implement custom painter for bezier curves.
-- [x] Create basic node widget (glassmorphic cards).
-- [x] Mock graph data to test rendering performance (50+ nodes).
+**Goal:** Finalize and verify the interactive infinite canvas and basic node rendering.
+**Requirements:** [CNR-01, CNR-02, CNR-03]
+**Plans:** 3 plans
+- [ ] 02-01-PLAN.md — Refine Core Rendering & Painter (Wave 1)
+- [ ] 02-02-PLAN.md — Performance Mocking & BLoC Optimization (Wave 2)
+- [ ] 02-03-PLAN.md — Stress Testing & Validation (Wave 3)
 
 ## Milestone 2: Data Exploration (Phase 3-4)
 **Goal:** Connect to live music metadata and implement dynamic discovery.
 
 ### Phase 3: MusicBrainz Integration
-- [ ] Implement rate-limited API client for MusicBrainz.
-- [ ] Search feature to find seed artists.
-- [ ] "Expand Node" logic to fetch and display relationships.
+- [ ] Implement rate-limited API client for MusicBrainz. [MB-01]
+- [ ] Search feature to find seed artists. [MB-02]
+- [ ] "Expand Node" logic to fetch and display relationships. [MB-03]
+
+**Plans:** 3 plans
+- [ ] 03-01-PLAN.md — MusicBrainz Infrastructure (Wave 1)
+- [ ] 03-02-PLAN.md — Artist Search & Seed Node (Wave 2)
+- [ ] 03-03-PLAN.md — Node Expansion & Relationships (Wave 3)
 
 ### Phase 4: Wikidata & Macro-Evolution
 - [ ] SPARQL client for fetching genre hierarchies.
-- [ ] Map artist MBIDs to Wikidata QIDs.
+- [ ] Map artist MBIDs to Wikidata QID mapping.
 - [ ] Render genre clusters and parent/child evolution lines.
 
 ## Milestone 3: Persistence & Sharing (Phase 5-6)
@@ -58,4 +66,4 @@
 - [ ] Prepare deployment metadata.
 
 ---
-*Last updated: 2026-03-26*
+*Last updated: 2026-03-31*

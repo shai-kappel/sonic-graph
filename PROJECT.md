@@ -1,8 +1,8 @@
-# SonicGraph
+# SonicNomad
 
 ## What This Is
 
-SonicGraph is a mobile-first, open-source application that visually maps the macro-evolution of music genres and interconnected relationships between artists. Users explore a 2D node-based infinite canvas — actively building, expanding, and visualizing "connect-the-dots" music history rather than scrolling through vertical lists. It transforms dense open music web data (MusicBrainz, Wikidata) into an intuitive, visual exploration tool.
+SonicNomad is a mobile-first, open-source application that visually maps the macro-evolution of music genres and interconnected relationships between artists. Users explore a 2D node-based infinite canvas — actively building, expanding, and visualizing "connect-the-dots" music history rather than scrolling through vertical lists. It transforms dense open music web data (MusicBrainz, Wikidata) into an intuitive, visual exploration tool.
 
 ## Core Value
 

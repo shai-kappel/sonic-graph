@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_bloc.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_event.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_state.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_bloc.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_event.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_state.dart';
 import 'package:flutter/material.dart';
 
 void main() {

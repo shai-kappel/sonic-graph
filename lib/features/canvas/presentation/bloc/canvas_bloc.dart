@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_edge.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_node.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_edge.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_node.dart';
 import 'canvas_event.dart';
 import 'canvas_state.dart';
 
