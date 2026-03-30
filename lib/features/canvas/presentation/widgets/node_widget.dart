@@ -1,38 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:sonic_graph/core/widgets/glassmorphic_container.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_node.dart';
+import 'package:sonic_nomad/core/theme/app_text_styles.dart';
+import 'package:sonic_nomad/core/widgets/glassmorphic_container.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_node.dart';
 
 class NodeWidget extends StatelessWidget {
-  const NodeWidget({super.key, required this.node, this.onTap});
+  const NodeWidget({
+    super.key,
+    required this.node,
+    this.onTap,
+    this.isFocused = false,
+  });
 
   final GraphNode node;
   final VoidCallback? onTap;
+  final bool isFocused;
 
   @override
   Widget build(BuildContext context) {
+    // Discovery Tile Dimensions
+    const double width = 160.0;
+    const double height = 80.0;
+
     return Positioned(
-      left: node.position.dx - 60, // Centering (width/2)
-      top: node.position.dy - 30, // Centering (height/2)
+      left: node.position.dx - (width / 2),
+      top: node.position.dy - (height / 2),
       child: GestureDetector(
         onTap: onTap,
         child: GlassmorphicContainer(
-          width: 120,
-          height: 60,
+          width: width,
+          height: height,
           borderRadius: 12,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                node.label,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          showGlow: isFocused,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                node.label.toUpperCase(),
+                style: AppTextStyles.labelMedium.copyWith(
+                  fontSize: 13,
                   color: Colors.white,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
+              if (node.metadata.containsKey('subtitle')) ...[
+                const SizedBox(height: 4),
+                Text(
+                  node.metadata['subtitle'].toString(),
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    fontSize: 11,
+                    color: Colors.white70,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ],
           ),
         ),
       ),

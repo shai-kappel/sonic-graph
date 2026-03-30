@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_edge.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_node.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_edge.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_node.dart';
 
 class CanvasState extends Equatable {
   const CanvasState({

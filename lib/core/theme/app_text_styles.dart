@@ -1,40 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 abstract final class AppTextStyles {
-  static const _fontFamily = 'Inter';
+  static bool isTest = false;
 
-  static const headlineLarge = TextStyle(
-    fontFamily: _fontFamily,
-    fontSize: 28,
-    fontWeight: FontWeight.w700,
-    color: AppColors.textPrimary,
-    letterSpacing: -0.5,
-  );
-  static const headlineMedium = TextStyle(
-    fontFamily: _fontFamily,
-    fontSize: 22,
-    fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
-    letterSpacing: -0.3,
-  );
-  static const bodyLarge = TextStyle(
-    fontFamily: _fontFamily,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textPrimary,
-  );
-  static const bodyMedium = TextStyle(
-    fontFamily: _fontFamily,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textSecondary,
-  );
-  static const labelSmall = TextStyle(
-    fontFamily: _fontFamily,
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColors.textMuted,
-    letterSpacing: 0.5,
-  );
+  // Headlines: Space Grotesk
+  static TextStyle get headlineLarge => isTest
+      ? const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)
+      : GoogleFonts.spaceGrotesk(
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+          color: AppColors.onBackground,
+          height: 1.1,
+        );
+
+  static TextStyle get headlineMedium => isTest
+      ? const TextStyle(fontSize: 24, fontWeight: FontWeight.w600)
+      : GoogleFonts.spaceGrotesk(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: AppColors.onBackground,
+          height: 1.1,
+        );
+
+  // Body: Manrope
+  static TextStyle get bodyLarge => isTest
+      ? const TextStyle(fontSize: 16, fontWeight: FontWeight.w400)
+      : GoogleFonts.manrope(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          color: AppColors.onBackground,
+        );
+
+  static TextStyle get bodyMedium => isTest
+      ? const TextStyle(fontSize: 14, fontWeight: FontWeight.w400)
+      : GoogleFonts.manrope(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          color: AppColors.onSurface,
+        );
+
+  // Labels: Space Grotesk
+  static TextStyle get labelSmall => isTest
+      ? const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)
+      : GoogleFonts.spaceGrotesk(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: AppColors.primary,
+          letterSpacing: 1.2,
+        );
+
+  static TextStyle get labelMedium => isTest
+      ? const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)
+      : GoogleFonts.spaceGrotesk(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: AppColors.primary,
+          letterSpacing: 1.4,
+        );
 }

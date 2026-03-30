@@ -1,12 +1,13 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sonic_graph/core/theme/app_colors.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_edge.dart';
-import 'package:sonic_graph/features/canvas/domain/models/graph_node.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_bloc.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_event.dart';
-import 'package:sonic_graph/features/canvas/presentation/bloc/canvas_state.dart';
-import 'package:sonic_graph/features/canvas/presentation/widgets/node_widget.dart';
+import 'package:sonic_nomad/core/theme/app_colors.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_edge.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_node.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_bloc.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_event.dart';
+import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_state.dart';
+import 'package:sonic_nomad/features/canvas/presentation/widgets/node_widget.dart';
 
 class InfiniteCanvas extends StatefulWidget {
   const InfiniteCanvas({super.key});
@@ -48,9 +49,9 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                // 1. Grid Background
+                // 1. Nebula Background (Atmospheric Light)
                 CustomPaint(
-                  painter: _CanvasGridPainter(),
+                  painter: _NebulaBackgroundPainter(),
                   size: const Size(4000, 4000),
                 ),
                 // 2. Edges (Bezier Curves)
@@ -61,7 +62,7 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
                   ),
                   size: const Size(4000, 4000),
                 ),
-                // 3. Nodes (Widgets)
+                // 3. Nodes (Discovery Tiles)
                 ...state.nodes.map((node) => NodeWidget(node: node)),
               ],
             ),
@@ -72,19 +73,28 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
   }
 }
 
-class _CanvasGridPainter extends CustomPainter {
+class _NebulaBackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.borderGlassSubtle
-      ..strokeWidth = 0.5;
+    final random = Random(42); // Deterministic "random" for the background
 
-    const gridSpacing = 60.0;
-    for (var x = 0.0; x < size.width; x += gridSpacing) {
-      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
+    // Paint blurred "Nebula Blobs"
+    void drawBlob(Color color, Offset offset, double radius) {
+      final paint = Paint()
+        ..color = color.withValues(alpha: 0.05)
+        ..maskFilter = MaskFilter.blur(BlurStyle.normal, radius * 0.5);
+      canvas.drawCircle(offset, radius, paint);
     }
-    for (var y = 0.0; y < size.height; y += gridSpacing) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
+
+    // Distribute blobs across the canvas
+    for (var i = 0; i < 20; i++) {
+      final color = i % 2 == 0 ? AppColors.primary : AppColors.tertiary;
+      final offset = Offset(
+        random.nextDouble() * size.width,
+        random.nextDouble() * size.height,
+      );
+      final radius = 200.0 + random.nextDouble() * 400.0;
+      drawBlob(color, offset, radius);
     }
   }
 
@@ -101,9 +111,15 @@ class _GraphEdgePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.primaryGlow.withOpacity(0.4)
-      ..strokeWidth = 2.0
+      ..color = AppColors.primary.withValues(alpha: 0.2)
+      ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
+
+    final glowPaint = Paint()
+      ..color = AppColors.primary.withValues(alpha: 0.05)
+      ..strokeWidth = 4.0
+      ..style = PaintingStyle.stroke
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.0);
 
     for (final edge in edges) {
       final fromNode = nodes.firstWhere((n) => n.id == edge.fromId);
@@ -115,7 +131,6 @@ class _GraphEdgePainter extends CustomPainter {
       final path = Path();
       path.moveTo(start.dx, start.dy);
 
-      // Control points for a smooth bezier curve
       final controlPoint1 = Offset(
         start.dx + (end.dx - start.dx) / 2,
         start.dy,
@@ -131,6 +146,7 @@ class _GraphEdgePainter extends CustomPainter {
         end.dy,
       );
 
+      canvas.drawPath(path, glowPaint);
       canvas.drawPath(path, paint);
     }
   }

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Architecture Boundary Check for SonicGraph
+# Architecture Boundary Check for SonicNomad
 # Enforces clean architecture layer rules:
 #   - domain/ must NOT import from presentation/ or data/
 #   - data/ must NOT import from presentation/

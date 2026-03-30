@@ -1,8 +1,8 @@
-# SonicGraph
+# SonicNomad
 
 > Visualize music genre evolution and artist relationships on an interactive infinite canvas.
 
-SonicGraph is a mobile-first, open-source application that visually maps the macro-evolution of music genres and the interconnected relationships between artists. Explore a 2D node-based infinite canvas — build, expand, and discover "connect-the-dots" music history rather than scrolling through vertical lists.
+SonicNomad is a mobile-first, open-source application that visually maps the macro-evolution of music genres and the interconnected relationships between artists. Explore a 2D node-based infinite canvas — build, expand, and discover "connect-the-dots" music history rather than scrolling through vertical lists.
 
 ## ✨ Features (Planned)
 
@@ -31,8 +31,8 @@ SonicGraph is a mobile-first, open-source application that visually maps the mac
 ### Setup
 
 ```bash
-git clone https://github.com/shai-kappel/sonic-graph.git
-cd sonic-graph
+git clone https://github.com/shai-kappel/sonic-nomad.git
+cd sonic-nomad
 
 # Install pre-commit hooks (optional but recommended)
 git config core.hooksPath .githooks
@@ -45,8 +45,8 @@ flutter run --flavor dev
 
 | Flavor | Bundle ID (Android) | Bundle ID (iOS) | Purpose |
 |--------|---------------------|-----------------|---------|
-| `dev`  | `com.indiedesert.sonicgraph.dev` | `com.indiedesert.SonicGraph.dev` | Development & testing |
-| `prod` | `com.indiedesert.sonicgraph` | `com.indiedesert.SonicGraph` | App Store releases |
+| `dev`  | `com.indiedesert.sonicnomad.dev` | `com.indiedesert.SonicNomad.dev` | Development & testing |
+| `prod` | `com.indiedesert.sonicnomad` | `com.indiedesert.SonicNomad` | App Store releases |
 
 ## 🗺️ Roadmap
 

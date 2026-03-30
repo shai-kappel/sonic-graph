@@ -1,7 +1,7 @@
-# Project State: SonicGraph
+# Project State: SonicNomad
 
 ## Summary
-SonicGraph is a mobile-first application that visually maps the macro-evolution of music genres and artists. The core interactive canvas and design system are initialized.
+SonicNomad is a mobile-first application that visually maps the macro-evolution of music genres and artists. The core interactive canvas and design system are initialized.
 
 ## Current Context
 We have completed Phase 1: Project Scaffolding. The app now features an interactive infinite canvas with pan/zoom capabilities, managed by BLoC, and follows the Glassmorphic Deep Blue design system.

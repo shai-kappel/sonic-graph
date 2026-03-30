@@ -1,4 +1,4 @@
-# Strict analysis options for SonicGraph
+# Strict analysis options for SonicNomad
 # Enforces clean architecture patterns and Dart best practices
 
 include: package:flutter_lints/flutter.yaml

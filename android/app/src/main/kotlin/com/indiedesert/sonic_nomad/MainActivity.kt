@@ -1,4 +1,4 @@
-package com.indiedesert.sonic_graph
+package com.indiedesert.sonic_nomad
 
 import io.flutter.embedding.android.FlutterActivity
 
