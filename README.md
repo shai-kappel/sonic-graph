@@ -56,8 +56,8 @@ flutter run --flavor dev
 
 | Milestone | Phases | Status |
 |-----------|--------|--------|
-| Foundation & Canvas | 1. Project Scaffolding · 2. Static Canvas & Node Rendering | 🔨 In Progress |
-| Data Exploration | 3. MusicBrainz Integration · 4. Wikidata & Macro-Evolution | ⏳ Planned |
+| Foundation & Canvas | 1. Project Scaffolding · 2. Static Canvas & Node Rendering | ✅ Complete |
+| Data Exploration | 3. MusicBrainz Integration · 4. Wikidata & Macro-Evolution | ✅ Complete |
 | Persistence & Sharing | 5. Firebase Integration · 6. Deep Linking & Sharing | ⏳ Planned |
 | Polish & Deployment | 7. Final Polish | ⏳ Planned |
 

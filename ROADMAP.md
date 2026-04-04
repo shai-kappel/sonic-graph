@@ -1,7 +1,7 @@
 # Roadmap: SonicNomad
 
-- **[Milestone 1: Foundation & Canvas](.planning/milestones/v1-ROADMAP.md)** - Completed 2026-03-30. 100-node 60fps canvas + CI/CD.
-- **[Milestone 2: Data Exploration](.planning/milestones/v2.0-ROADMAP.md)** - Completed 2026-04-04. Live MB/Wikidata discovery.
+- **[Milestone 1: Foundation & Canvas](milestones/v1-ROADMAP.md)** - Completed 2026-03-30. 100-node 60fps canvas + CI/CD.
+- **[Milestone 2: Data Exploration](milestones/v2.0-ROADMAP.md)** - Completed 2026-04-04. Live MB/Wikidata discovery.
 
 ## Milestone 3: Persistence & Sharing (Phase 5-6)
 **Goal:** User accounts and the ability to save/share discovery paths.

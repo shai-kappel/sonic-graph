@@ -6,6 +6,12 @@ set -e
 
 echo "🔍 Running pre-commit checks..."
 
+# 0. Sync project status (Keep root files up to date for public visibility)
+echo "  Syncing project status from .planning/..."
+cp .planning/STATE.md STATE.md
+cp .planning/ROADMAP.md ROADMAP.md
+git add STATE.md ROADMAP.md
+
 # 1. Format check
 echo "  Checking formatting..."
 dart format --set-exit-if-changed . || {
