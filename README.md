@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/images/logo.jpg" alt="SonicNomad Logo" width="300" />
+</div>
+
 # SonicNomad
 
 > Visualize music genre evolution and artist relationships on an interactive infinite canvas.

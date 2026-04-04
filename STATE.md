@@ -1,39 +1,85 @@
-# Project State: SonicNomad
-
-## Summary
-SonicNomad is a mobile-first application that visually maps the macro-evolution of music genres and artists. The core interactive canvas and design system are initialized.
-
-## Current Context
-We have completed Phase 1: Project Scaffolding. The app now features an interactive infinite canvas with pan/zoom capabilities, managed by BLoC, and follows the Glassmorphic Deep Blue design system.
-
-## Milestone Status
-- **Milestone 1: Foundation & Canvas** (Active)
-- **Milestone 2: Data Exploration** (Pending)
-- **Milestone 3: Music History Graph Logic** (Pending)
-- **Milestone 4: Firebase Auth & Sharing** (Pending)
-- **Milestone 5: Polish & Deployment** (Pending)
-
-## Latest Activity
-- **2026-03-26:** Completed Phase 1: Project Scaffolding.
-  - Initialized Flutter project with dev/prod flavors.
-  - Implemented Glassmorphic Deep Blue design system (colors, theme, typography).
-  - Created interactive infinite canvas with BLoC state management.
-  - Set up dependency injection skeleton with GetIt.
-
-## Active Phase
-- **Phase 2: Static Canvas & Node Rendering** (Next)
-  - [ ] Implement custom painter for bezier curves
-  - [ ] Create basic node widget (glassmorphic cards)
-  - [ ] Mock graph data to test rendering performance (50+ nodes)
-
-## Blockers
-- None.
-
-## Technical Memory
-- **Visuals:** Glassmorphic Deep Blue aesthetic with multi-layered shadows and glow effects.
-- **Backend:** Firebase Spark tier ($0 cost) is a hard constraint. No Cloud Functions.
-- **State Management:** Bloc chosen for handling complex async graph state.
-- **Testing:** Focus on integration and critical path tests.
-
 ---
-*Last updated: 2026-03-26 after Phase 1 completion*
+gsd_state_version: 1.0
+milestone: v2.0
+milestone_name: Data Exploration
+status: Milestone Complete
+stopped_at: Milestone 2 Audit Complete
+last_updated: "2026-04-04T12:00:00.000Z"
+last_activity: 2026-04-04
+progress:
+  total_phases: 7
+  completed_phases: 4
+  total_plans: 16
+  completed_plans: 16
+  percent: 57
+---
+
+# Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-03-30)
+
+**Core value:** Users can visually explore how artists and genres connect and evolve on an interactive infinite canvas — spatial discovery, not list-based browsing.
+**Current focus:** Milestone 3 (Persistence & Sharing)
+
+## Current Position
+
+Phase: 04 of 07 (Wikidata Macro-Evolution) - COMPLETE
+Status: Milestone 2 Complete
+Last activity: 2026-04-04
+
+Progress: [▓▓▓▓▓▓░░░░] 57%
+
+## Performance Metrics
+
+**Velocity:**
+
+- Total plans completed: 16
+- Average duration: 10 min
+- Total execution time: 2.66 hours
+
+**Shipped Versions:**
+
+- v1.0: Foundation & Canvas (2026-03-30)
+- v2.0: Data Exploration (2026-04-04)
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| 01    | 4     | 4     | 10 min   |
+| 01.1  | 3     | 3     | 10 min   |
+| 02    | 3     | 3     | 10 min   |
+| 03    | 3     | 3     | 10 min   |
+| 04    | 3     | 3     | 10 min   |
+
+**Recent Trend:**
+
+- Last 5 plans: [10, 10, 10, 10, 10]
+- Trend: Stable
+
+## Accumulated Context
+
+### Decisions
+
+- [Phase 03]: Strict 1req/sec local rate limiting for MusicBrainz
+- [Phase 03]: MBArtistModel includes MBID, score, country metadata
+- [Phase 04]: CanvasState Map-based refactor for O(1) deduplication
+- [Phase 04]: Specialized GenreNodeWidget (120x120 circular)
+- [Phase 04]: GraphLayoutEngine centralizes graph geometry and sizing
+- [Milestone 02]: Audit complete, MB and Wikidata integrated. MB tech debt identified.
+
+### Pending Todos
+
+- [Tech Debt]: Refactor MusicBrainz to separate domain entities from data models.
+
+### Blockers/Concerns
+
+None yet.
+
+## Session Continuity
+
+Last session: 2026-04-04T12:00:00.000Z
+Stopped at: Milestone 2 Audit Complete
+Resume file: .planning/milestones/v2-VERIFICATION.md

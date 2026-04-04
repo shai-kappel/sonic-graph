@@ -24,3 +24,30 @@ class CanvasZoomChanged extends CanvasEvent {
   @override
   List<Object?> get props => [zoomLevel];
 }
+
+class AddNodeEvent extends CanvasEvent {
+  const AddNodeEvent({
+    required this.label,
+    required this.position,
+    this.metadata = const {},
+  });
+  final String label;
+  final Offset position;
+  final Map<String, dynamic> metadata;
+  @override
+  List<Object?> get props => [label, position, metadata];
+}
+
+class ExpandNodeRequest extends CanvasEvent {
+  const ExpandNodeRequest({required this.nodeId});
+  final String nodeId;
+  @override
+  List<Object?> get props => [nodeId];
+}
+
+class LoadMacroEvolution extends CanvasEvent {
+  const LoadMacroEvolution({required this.nodeId});
+  final String nodeId;
+  @override
+  List<Object?> get props => [nodeId];
+}

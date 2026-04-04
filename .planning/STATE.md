@@ -1,46 +1,48 @@
 ---
 gsd_state_version: 1.0
 milestone: v2.0
-milestone_name: data-exploration
-status: in-progress
-stopped_at: Shipped Milestone 1 (v1.0)
-last_updated: "2026-03-30T16:30:00.000Z"
-last_activity: 2026-03-30
+milestone_name: Data Exploration
+status: Milestone Complete
+stopped_at: Milestone 2 Complete
+last_updated: "2026-04-04T12:30:00.000Z"
+last_activity: 2026-04-04
 progress:
-  total_phases: 8
-  completed_phases: 3
-  total_plans: 10
-  completed_plans: 10
-  percent: 50
+  total_phases: 7
+  completed_phases: 4
+  total_plans: 16
+  completed_plans: 16
+  percent: 57
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-30)
+See: .planning/PROJECT.md (updated 2026-04-04)
 
 **Core value:** Users can visually explore how artists and genres connect and evolve on an interactive infinite canvas — spatial discovery, not list-based browsing.
-**Current focus:** Phase 3 (MusicBrainz Integration)
+**Current focus:** Milestone 3 (Persistence & Sharing)
 
 ## Current Position
 
-Phase: 03 of 07 (MusicBrainz Integration)
-Status: Ready to start
-Last activity: 2026-03-30
+Phase: 04 of 07 (Wikidata Macro-Evolution) - COMPLETE
+Status: Milestone 2 Complete
+Last activity: 2026-04-04
 
-Progress: [▓▓▓▓▓░░░░░] 50%
+Progress: [▓▓▓▓▓▓░░░░] 57%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 10
+- Total plans completed: 16
 - Average duration: 10 min
-- Total execution time: 1.66 hours
+- Total execution time: 2.66 hours
 
 **Shipped Versions:**
+
 - v1.0: Foundation & Canvas (2026-03-30)
+- v2.0: Data Exploration (2026-04-04)
 
 **By Phase:**
 
@@ -49,35 +51,29 @@ Progress: [▓▓▓▓▓░░░░░] 50%
 | 01    | 4     | 4     | 10 min   |
 | 01.1  | 3     | 3     | 10 min   |
 | 02    | 3     | 3     | 10 min   |
+| 03    | 3     | 3     | 10 min   |
+| 04    | 3     | 3     | 10 min   |
 
 **Recent Trend:**
+
 - Last 5 plans: [10, 10, 10, 10, 10]
 - Trend: Stable
-
-*Updated after each plan completion*
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- [Phase 01.1]: Gitleaks scans full history on push/PR
-- [Phase 01.1]: Trivy uses FS scan for pub dependency vulnerability detection
-- [Phase 01.1]: Weekly Dependabot schedule on Mondays
-- [Phase 01.1]: Use String.fromEnvironment for secrets via --dart-define-from-file
-- [Phase 02]: InteractiveViewer + CustomPaint for node-link rendering
-- [Phase 02]: Use Map<String, Offset> for O(1) painter node lookups
-- [Phase 02]: Edge-Aware curves terminate at 160x80 Discovery Tile boundaries
-- [Phase 02]: RepaintBoundary for nebula blobs and graph edges
-- [Phase 02]: 100-node stress mock in CanvasBloc
-- [Phase 02]: Nyquist stress test confirms 100-node widget tree stability
-- [Milestone 01]: Audit complete, all phases (01, 01.1, 02) integrated and verified.
+- [Phase 03]: Strict 1req/sec local rate limiting for MusicBrainz
+- [Phase 03]: MBArtistModel includes MBID, score, country metadata
+- [Phase 04]: CanvasState Map-based refactor for O(1) deduplication
+- [Phase 04]: Specialized GenreNodeWidget (120x120 circular)
+- [Phase 04]: GraphLayoutEngine centralizes graph geometry and sizing
+- [Milestone 02]: Audit complete, MB and Wikidata integrated.
+- [Milestone 02]: MusicBrainz refactored to separate domain entities from data models.
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Blockers/Concerns
 
@@ -85,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T11:50:00.000Z
-Stopped at: Ready for Phase 2
-Resume file: None
+Last session: 2026-04-04T12:30:00.000Z
+Stopped at: Milestone 2 Complete
+Resume file: PROJECT.md

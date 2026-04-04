@@ -15,7 +15,8 @@ class WikidataApi {
   WikidataApi({http.Client? client}) : _client = client ?? http.Client();
 
   Future<WikidataResponseModel> fetchArtistGenres(String mbid) async {
-    final query = '''
+    final query =
+        '''
 SELECT ?artist ?artistLabel ?genre ?genreLabel ?superGenre ?superGenreLabel WHERE {
   ?artist wdt:P434 "$mbid" .
   ?artist wdt:P136 ?genre .
@@ -54,9 +55,7 @@ SELECT ?artist ?artistLabel ?genre ?genreLabel ?superGenre ?superGenreLabel WHER
         'Content-Type': 'application/x-www-form-urlencoded',
         'User-Agent': userAgent,
       },
-      body: {
-        'query': query,
-      },
+      body: {'query': query},
     );
 
     return response;
@@ -79,7 +78,9 @@ SELECT ?artist ?artistLabel ?genre ?genreLabel ?superGenre ?superGenreLabel WHER
     while (_requestQueue.isNotEmpty) {
       final now = DateTime.now();
       final timeSinceLastRequest = now.difference(_lastRequestTime);
-      const minInterval = Duration(seconds: 1); // Respectful 1s between requests
+      const minInterval = Duration(
+        seconds: 1,
+      ); // Respectful 1s between requests
 
       if (timeSinceLastRequest < minInterval) {
         await Future.delayed(minInterval - timeSinceLastRequest);
