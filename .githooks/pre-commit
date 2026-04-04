@@ -8,7 +8,7 @@ echo "🔍 Running pre-commit checks..."
 
 # 1. Format check
 echo "  Checking formatting..."
-dart format --set-exit-if-changed . > /dev/null 2>&1 || {
+dart format --set-exit-if-changed . || {
   echo "❌ Formatting issues found. Run: dart format ."
   exit 1
 }

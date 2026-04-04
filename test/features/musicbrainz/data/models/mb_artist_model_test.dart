@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sonic_nomad/features/musicbrainz/data/models/mb_artist_model.dart';
+import 'package:sonic_nomad/features/musicbrainz/domain/entities/artist.dart';
 
 void main() {
   const tMBArtistModel = MBArtistModel(
@@ -20,6 +21,7 @@ void main() {
     'disambiguation': 'Oxfordshire-based rock band',
     'country': 'GB',
     'score': 100,
+    'relations': null,
   };
 
   group('MBArtistModel', () {
@@ -31,6 +33,13 @@ void main() {
     test('toJson should return a JSON map containing the proper data', () {
       final result = tMBArtistModel.toJson();
       expect(result, tJson);
+    });
+
+    test('toEntity should return a valid domain entity', () {
+      final result = tMBArtistModel.toEntity();
+      expect(result, isA<Artist>());
+      expect(result.id, tMBArtistModel.id);
+      expect(result.name, tMBArtistModel.name);
     });
   });
 }

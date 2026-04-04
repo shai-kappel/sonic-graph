@@ -30,6 +30,22 @@ class MusicBrainzApi {
     }
   }
 
+  Future<MBArtistModel> getArtist(String mbid, {List<String>? includes}) async {
+    final queryParams = includes != null
+        ? {'inc': includes.join('+')}
+        : <String, String>{};
+    final response = await _get('/artist/$mbid', queryParams: queryParams);
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return MBArtistModel.fromJson(data);
+    } else {
+      throw Exception(
+        'Failed to get artist: ${response.statusCode} ${response.body}',
+      );
+    }
+  }
+
   Future<http.Response> _get(
     String endpoint, {
     Map<String, String>? queryParams,

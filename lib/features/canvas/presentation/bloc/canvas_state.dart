@@ -9,24 +9,24 @@ class CanvasState extends Equatable {
     this.panOffset = Offset.zero,
     this.transformMatrix,
     this.isInitialized = false,
-    this.nodes = const [],
-    this.edges = const [],
+    this.nodes = const {},
+    this.edges = const {},
   });
 
   final double zoomLevel;
   final Offset panOffset;
   final Matrix4? transformMatrix;
   final bool isInitialized;
-  final List<GraphNode> nodes;
-  final List<GraphEdge> edges;
+  final Map<String, GraphNode> nodes;
+  final Map<String, GraphEdge> edges;
 
   CanvasState copyWith({
     double? zoomLevel,
     Offset? panOffset,
     Matrix4? transformMatrix,
     bool? isInitialized,
-    List<GraphNode>? nodes,
-    List<GraphEdge>? edges,
+    Map<String, GraphNode>? nodes,
+    Map<String, GraphEdge>? edges,
   }) {
     return CanvasState(
       zoomLevel: zoomLevel ?? this.zoomLevel,

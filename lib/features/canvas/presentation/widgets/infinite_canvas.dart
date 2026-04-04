@@ -1,12 +1,16 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sonic_nomad/core/metrics/graph_layout_engine.dart';
 import 'package:sonic_nomad/core/theme/app_colors.dart';
+import 'package:sonic_nomad/core/theme/app_text_styles.dart';
 import 'package:sonic_nomad/features/canvas/domain/models/graph_edge.dart';
+import 'package:sonic_nomad/features/canvas/domain/models/graph_node.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_bloc.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_event.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_state.dart';
 import 'package:sonic_nomad/features/canvas/presentation/widgets/node_widget.dart';
+import 'package:sonic_nomad/features/canvas/presentation/widgets/genre_node_widget.dart';
 
 class InfiniteCanvas extends StatefulWidget {
   const InfiniteCanvas({super.key});
@@ -48,27 +52,31 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                // 1. Nebula Background (Atmospheric Light) - Isolated with RepaintBoundary
+                // 1. Nebula Background
                 RepaintBoundary(
                   child: CustomPaint(
                     painter: _NebulaBackgroundPainter(),
                     size: const Size(5000, 5000),
                   ),
                 ),
-                // 2. Edges (Bezier Curves) - Isolated with RepaintBoundary
+                // 2. Edges
                 RepaintBoundary(
                   child: CustomPaint(
                     painter: _GraphEdgePainter(
-                      nodePositions: {
-                        for (final node in state.nodes) node.id: node.position,
-                      },
-                      edges: state.edges,
+                      nodes: state.nodes,
+                      edges: state.edges.values.toList(),
                     ),
                     size: const Size(5000, 5000),
                   ),
                 ),
-                // 3. Nodes (Discovery Tiles)
-                ...state.nodes.map((node) => NodeWidget(node: node)),
+                // 3. Nodes
+                ...state.nodes.values.map((node) {
+                  final isGenre = node.metadata['type'] == 'genre';
+                  if (isGenre) {
+                    return GenreNodeWidget(node: node);
+                  }
+                  return NodeWidget(node: node);
+                }),
               ],
             ),
           ),
@@ -81,9 +89,7 @@ class _InfiniteCanvasState extends State<InfiniteCanvas> {
 class _NebulaBackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final random = Random(42); // Deterministic "random" for the background
-
-    // Paint blurred "Nebula Blobs"
+    final random = Random(42);
     void drawBlob(Color color, Offset offset, double radius) {
       final paint = Paint()
         ..color = color.withValues(alpha: 0.05)
@@ -91,7 +97,6 @@ class _NebulaBackgroundPainter extends CustomPainter {
       canvas.drawCircle(offset, radius, paint);
     }
 
-    // Distribute blobs across the canvas
     for (var i = 0; i < 20; i++) {
       final color = i % 2 == 0 ? AppColors.primary : AppColors.tertiary;
       final offset = Offset(
@@ -108,58 +113,80 @@ class _NebulaBackgroundPainter extends CustomPainter {
 }
 
 class _GraphEdgePainter extends CustomPainter {
-  _GraphEdgePainter({required this.nodePositions, required this.edges});
+  _GraphEdgePainter({required this.nodes, required this.edges});
 
-  final Map<String, Offset> nodePositions;
+  final Map<String, GraphNode> nodes;
   final List<GraphEdge> edges;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.primary.withValues(alpha: 0.2)
-      ..strokeWidth = 1.5
-      ..style = PaintingStyle.stroke;
-
-    final glowPaint = Paint()
-      ..color = AppColors.primary.withValues(alpha: 0.05)
-      ..strokeWidth = 4.0
-      ..style = PaintingStyle.stroke
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.0);
-
     for (final edge in edges) {
-      final rawStart = nodePositions[edge.fromId];
-      final rawEnd = nodePositions[edge.toId];
+      final nodeFrom = nodes[edge.fromId];
+      final nodeTo = nodes[edge.toId];
 
-      if (rawStart == null || rawEnd == null) continue;
+      if (nodeFrom == null || nodeTo == null) continue;
 
-      // Calculate intersection with 160x80 Discovery Tile boundaries
-      // Tiles are centered on the node position.
+      final rawStart = nodeFrom.position;
+      final rawEnd = nodeTo.position;
+
+      final isMacroEvolution =
+          edge.metadata['isMacroEvolution'] == true ||
+          edge.label == 'subgenre of' ||
+          edge.label == 'subclass of';
+
+      final paint = Paint()
+        ..color = isMacroEvolution
+            ? AppColors.primary.withValues(alpha: 0.5)
+            : AppColors.primary.withValues(alpha: 0.2)
+        ..strokeWidth = isMacroEvolution ? 2.5 : 1.5
+        ..style = PaintingStyle.stroke;
+
+      final glowPaint = Paint()
+        ..color = AppColors.primary.withValues(alpha: 0.05)
+        ..strokeWidth = isMacroEvolution ? 6.0 : 4.0
+        ..style = PaintingStyle.stroke
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.0);
+
+      final fromSize = GraphLayoutEngine.getNodeSize(
+        nodeFrom.metadata['type']?.toString(),
+      );
+      final toSize = GraphLayoutEngine.getNodeSize(
+        nodeTo.metadata['type']?.toString(),
+      );
+
       final dx = rawEnd.dx - rawStart.dx;
       final dy = rawEnd.dy - rawStart.dy;
 
-      // Offset by half-width (80) or half-height (40) depending on dominant direction
       final double offsetX;
       final double offsetY;
 
       if (dx.abs() > dy.abs()) {
-        offsetX = 80.0 * (dx > 0 ? 1 : -1);
+        offsetX = (fromSize.width / 2) * (dx > 0 ? 1 : -1);
         offsetY = 0.0;
       } else {
         offsetX = 0.0;
-        offsetY = 40.0 * (dy > 0 ? 1 : -1);
+        offsetY = (fromSize.height / 2) * (dy > 0 ? 1 : -1);
+      }
+
+      final double endOffsetX;
+      final double endOffsetY;
+      if (dx.abs() > dy.abs()) {
+        endOffsetX = (toSize.width / 2) * (dx > 0 ? 1 : -1);
+        endOffsetY = 0.0;
+      } else {
+        endOffsetX = 0.0;
+        endOffsetY = (toSize.height / 2) * (dy > 0 ? 1 : -1);
       }
 
       final start = Offset(rawStart.dx + offsetX, rawStart.dy + offsetY);
-      final end = Offset(rawEnd.dx - offsetX, rawEnd.dy - offsetY);
+      final end = Offset(rawEnd.dx - endOffsetX, rawEnd.dy - endOffsetY);
 
       final path = Path();
       path.moveTo(start.dx, start.dy);
 
-      final controlPoint1 = Offset(
-        start.dx + (end.dx - start.dx) / 2,
-        start.dy,
-      );
-      final controlPoint2 = Offset(start.dx + (end.dx - start.dx) / 2, end.dy);
+      final midX = start.dx + (end.dx - start.dx) / 2;
+      final controlPoint1 = Offset(midX, start.dy);
+      final controlPoint2 = Offset(midX, end.dy);
 
       path.cubicTo(
         controlPoint1.dx,
@@ -172,12 +199,77 @@ class _GraphEdgePainter extends CustomPainter {
 
       canvas.drawPath(path, glowPaint);
       canvas.drawPath(path, paint);
+
+      if (edge.label != null && edge.label!.isNotEmpty) {
+        _drawEdgeLabel(canvas, edge.label!, start, end, midX, isMacroEvolution);
+      }
     }
+  }
+
+  void _drawEdgeLabel(
+    Canvas canvas,
+    String label,
+    Offset start,
+    Offset end,
+    double midX,
+    bool isMacroEvolution,
+  ) {
+    final midY = start.dy + (end.dy - start.dy) / 2;
+    final center = Offset(midX, midY);
+
+    final textSpan = TextSpan(
+      text: label.toUpperCase(),
+      style: AppTextStyles.labelSmall.copyWith(
+        fontSize: 10,
+        color: isMacroEvolution ? Colors.white : AppColors.primary,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.5,
+      ),
+    );
+
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    final bgWidth = textPainter.width + 12;
+    final bgHeight = textPainter.height + 6;
+    final bgRect = Rect.fromCenter(
+      center: center,
+      width: bgWidth,
+      height: bgHeight,
+    );
+
+    final bgPaint = Paint()
+      ..color = isMacroEvolution
+          ? AppColors.tertiary
+          : AppColors.surfaceContainerHigh
+      ..style = PaintingStyle.fill;
+
+    final borderPaint = Paint()
+      ..color = isMacroEvolution
+          ? AppColors.tertiary.withValues(alpha: 0.5)
+          : AppColors.primary.withValues(alpha: 0.3)
+      ..strokeWidth = 0.5
+      ..style = PaintingStyle.stroke;
+
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(bgRect, const Radius.circular(4)),
+      bgPaint,
+    );
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(bgRect, const Radius.circular(4)),
+      borderPaint,
+    );
+
+    textPainter.paint(
+      canvas,
+      center - Offset(textPainter.width / 2, textPainter.height / 2),
+    );
   }
 
   @override
   bool shouldRepaint(covariant _GraphEdgePainter oldDelegate) {
-    return oldDelegate.nodePositions != nodePositions ||
-        oldDelegate.edges != edges;
+    return oldDelegate.nodes != nodes || oldDelegate.edges != edges;
   }
 }

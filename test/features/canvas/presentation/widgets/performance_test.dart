@@ -5,12 +5,31 @@ import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_bloc.dart';
 import 'package:sonic_nomad/features/canvas/presentation/bloc/canvas_event.dart';
 import 'package:sonic_nomad/features/canvas/presentation/widgets/infinite_canvas.dart';
 import 'package:sonic_nomad/features/canvas/presentation/widgets/node_widget.dart';
+import 'package:sonic_nomad/features/musicbrainz/domain/usecases/get_artist_relationships.dart';
+import 'package:sonic_nomad/features/wikidata/domain/usecases/get_macro_evolution.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockGetArtistRelationships extends Mock
+    implements GetArtistRelationships {}
+
+class MockGetMacroEvolution extends Mock implements GetMacroEvolution {}
 
 void main() {
+  late MockGetArtistRelationships mockGetArtistRelationships;
+  late MockGetMacroEvolution mockGetMacroEvolution;
+
+  setUp(() {
+    mockGetArtistRelationships = MockGetArtistRelationships();
+    mockGetMacroEvolution = MockGetMacroEvolution();
+  });
+
   testWidgets('InfiniteCanvas handles 100 nodes and interaction under load', (
     WidgetTester tester,
   ) async {
-    final canvasBloc = CanvasBloc();
+    final canvasBloc = CanvasBloc(
+      getArtistRelationships: mockGetArtistRelationships,
+      getMacroEvolution: mockGetMacroEvolution,
+    );
 
     await tester.pumpWidget(
       MaterialApp(
