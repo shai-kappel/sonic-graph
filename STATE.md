@@ -69,6 +69,7 @@ Progress: [▓▓▓▓▓▓░░░░] 57%
 - [Phase 04]: Specialized GenreNodeWidget (120x120 circular)
 - [Phase 04]: GraphLayoutEngine centralizes graph geometry and sizing
 - [Milestone 02]: Audit complete, MB and Wikidata integrated. MB tech debt identified.
+- [Quick]: Added git-cliff for automated changelog generation based on conventional commits.
 
 ### Pending Todos
 

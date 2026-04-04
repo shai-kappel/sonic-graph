@@ -70,6 +70,13 @@ Users can visually explore how artists and genres connect and evolve on an inter
 | Domain Entities Mapping | Strict boundary between API models and business logic | Validated (v2.0) |
 | Online-only MVP | Lightweight initial build, defer complexity | Pending |
 | Direct client API calls | Enforces $0 backend cost for open-source sustainability | Pending |
+| git-cliff | Automated changelog generation based on conventional commits | Validated (quick) |
+
+## Tooling
+
+- **git-cliff:** Used for automated changelog generation. Configuration in `cliff.toml`. Helper script at `scripts/generate-changelog.sh`.
+- **Gitleaks:** Secrets detection.
+- **Trivy:** Vulnerability scanning.
 
 ---
-*Last updated: 2026-04-04 after Milestone 2 completion*
+*Last updated: 2026-04-04 after git-cliff integration*
