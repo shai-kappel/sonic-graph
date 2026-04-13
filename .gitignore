@@ -12,6 +12,7 @@ firebase-debug.*.log
 *.p12
 .env
 .env.*
+.planning/*
 
 # ==============================================================================
 # Flutter/Dart
@@ -26,16 +27,6 @@ coverage/
 *.dart_tool
 *.pb.dart
 
-# ==============================================================================
-# GSD Planning & State Files
-# ==============================================================================
-# 1. Ignore everything inside the planning directory by default
-.planning/*
-
-# 2. UN-IGNORE the specific, high-value files you want the community to see
-!.planning/PROJECT.md
-!.planning/ROADMAP.md
-!.planning/STATE.md
 
 # ==============================================================================
 # Android Native
